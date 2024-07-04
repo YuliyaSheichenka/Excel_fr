@@ -101,6 +101,16 @@ G6 : valeur d'intérêt
 B2:B11 : la colonne de la table qui contient la valeur d'intérêt
 C2:C11 : la colonne de la table qui conient la valeur à retourner
 
+### RECHERCHEX renvoie la date 00/01/1900 au lieu de la valeur vide dans la colonne des dates
+Dans ce cas, utiliser au lieu de format de date "date courte", utiliser le format personnalisé **jj/mm/aaaa;;**
+
+### RECHERCHEX renvoie 0 au lieu de la valeur vide dans la colonne de texte
+Dans ce cas, modifier la formule selon le modèle suivant:
+- formule initiale:
+=RECHERCHEX($A2;Payments!$B:$B;Payments!D:D)
+- formule modifiée:
+=SI(ESTVIDE(RECHERCHEX($A2;Payments!$B:$B;Payments!D:D));""; RECHERCHEX($A2;Payments!$B:$B;Payments!D:D))
+
 ### RECHERCHEH
 Recherche horizontale (analogue à RECHERCHEV), mais la recheche s'effectue dans la ligne indiquée.
 =RECHERCHEH(A12;A3:F7;5;0)
@@ -127,6 +137,10 @@ afin de pouvoir les sélectionner facilement lors de l'entrée de la formule.
 **C45:E45** : plage qui contient les entêtes des colonnes (une seule ligne avec entêtes comme "Janvier", "Février", "Mars")
 **0** : paramètre indiquant qu'on recherche la valeur exacte.
 La fonction retourne le nombre (ex. 2) qui correspond à l'indice de la colonne dont l'entête correspond à la valeur d'intérêt ("Février)
+
+### Remplacer les valeurs dans une colonne
+Ex. remplacer tous les zéros 0 par des valeurs vides ""
+Sélectionner la colonne où le remplacement doit être effectué -> Ctrl+f -> dans la fenêtre Rechercher et remplacer, aller dans l'onglet Remplacer, indiquer la valeur à remplacer et la valeur remplaçante, cliquer sur Remplacer tout. Le remplacement sera effectué dans la colonne sélectionnée seulement (et non dans la totalité du tableau/feuille)
 
 ### Concaténer les valeurs des cellules
 =B61&C61
